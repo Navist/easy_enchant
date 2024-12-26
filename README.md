@@ -19,7 +19,7 @@ isRunning := !isRunning ; Toggle the running state
 if (isRunning)
 {
     ToolTip, Macro Running
-    SetTimer, RunMacro, 100 ; Start the macro with a 100ms interval
+    SetTimer, RunMacro, 10 ; Short interval to allow hotkey responsiveness
 }
 else
 {
@@ -50,6 +50,10 @@ RunMacro:
     Sleep, 100
     Send, ^{Click} ; Control + Left Click to retrieve the enchanted book
     Sleep, 100
+
+    ; Check if paused during any part of the process
+    if (!isRunning)
+        SetTimer, RunMacro, Off ; Stop the macro mid-process if paused
 }
 Return
 
@@ -67,6 +71,7 @@ ExitApp
 1. **Start/Pause the Macro**:
    - Press `Ctrl + E` to toggle the macro on or off.
    - When running, the script automates the enchanting process.
+   - Pressing `Ctrl + E` again pauses the macro, even if it is mid-process.
 2. **Stop the Macro**:
    - Press `Ctrl + Q` to exit the script entirely.
 3. **Adjust Coordinates**:
