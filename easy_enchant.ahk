@@ -1,3 +1,5 @@
+#SingleInstance Force
+
 global isRunning := false ; Variable to track macro state (stopped by default)
 
 ; Hotkey to toggle the macro on/off (Ctrl + E in this example)
@@ -7,7 +9,7 @@ isRunning := !isRunning ; Toggle the running state
 if (isRunning)
 {
     ToolTip, Macro Running
-    SetTimer, RunMacro, 100 ; Start the macro with a 100ms interval
+    SetTimer, RunMacro, 10 ; Short interval to allow hotkey responsiveness
 }
 else
 {
@@ -38,10 +40,13 @@ RunMacro:
     Sleep, 100
     Send, ^{Click} ; Control + Left Click to retrieve the enchanted book
     Sleep, 100
+
+    ; Check if paused during any part of the process
+    if (!isRunning)
+        SetTimer, RunMacro, Off ; Stop the macro mid-process if paused
 }
 Return
 
 ; Hotkey to stop the macro entirely (Ctrl + Q in this example)
 ^q::
 ExitApp
-```
