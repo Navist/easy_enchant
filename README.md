@@ -1,3 +1,9 @@
+## Description
+This AutoHotkey (AHK) script automates the process of enchanting books in Minecraft. The script:
+1. Picks a book from the inventory and places it in the enchanting table.
+2. Selects the desired enchantment.
+3. Removes the enchanted book from the table and repeats the process until the inventory is full.
+
 ## Installation Guide
 1. Install [AutoHotkey](https://www.autohotkey.com/).
 2. Copy the script above into a text editor and save it as a `.ahk` file, e.g., `MinecraftEnchantingMacro.ahk`.
